@@ -1,0 +1,24 @@
+.dropdown {
+    position: relative;
+    
+    .dropdown-menu {
+        display: none;      // [none] because it should display only when we hover over it.
+        position: absolute; // because we wanna it be relative to the container.
+        left: 0;
+        top: 100%;
+        z-index: 1000;      // as its absolute, it must have z-index, 1000 to keep it above most other things.
+        background-color: white;
+        min-width: 200px;
+        text-align: left;
+        box-shadow: 0 0 1px rgba(57, 70, 78, .15), 0 20px 55px -8px rgba(57, 70, 78, .25);
+        
+
+    }
+    &.is-aligned-right .dropdown-menu{
+        right: 0;
+        left: auto;
+    }
+    &.is-open .dropdown-menu{
+        display: block;
+    }
+}
