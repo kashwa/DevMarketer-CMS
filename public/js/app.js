@@ -11946,6 +11946,10 @@ __webpack_require__(12);
 window.Vue = __webpack_require__(9);
 
 
+/**
+ * These buefy components are " Vue components ", and
+ * they can only be used with a " Vue Object ".
+ */
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
