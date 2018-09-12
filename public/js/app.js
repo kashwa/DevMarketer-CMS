@@ -11954,6 +11954,15 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+
+// TODO: make jquery function to hover over [hey user] button
+
+$(document).ready(function () {
+    $('button.dropdown').hover(function (e) {
+        $(this).toggleClass('is-open');
+    });
+});
+
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {

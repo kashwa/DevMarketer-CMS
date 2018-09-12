@@ -17573,13 +17573,29 @@ label.panel-block:hover {
   display: none;
   position: absolute;
   left: 0;
-  top: 100%;
+  top: 102%;
   z-index: 1000;
   background-color: white;
   min-width: 200px;
   text-align: left;
   -webkit-box-shadow: 0 0 1px rgba(57, 70, 78, 0.15), 0 20px 55px -8px rgba(57, 70, 78, 0.25);
           box-shadow: 0 0 1px rgba(57, 70, 78, 0.15), 0 20px 55px -8px rgba(57, 70, 78, 0.25);
+}
+
+.dropdown .dropdown-menu li.separator {
+  border-top: 1px solid #ccc;
+  margin: 5px 0;
+}
+
+.dropdown .dropdown-menu li > a {
+  margin: 5px 0;
+  padding: 5px 0 5px 15px;
+  display: block;
+  color: #0AB2A1;
+}
+
+.dropdown .dropdown-menu li > a:hover {
+  background-color: whitesmoke;
 }
 
 .dropdown.is-aligned-right .dropdown-menu {
@@ -17589,6 +17605,100 @@ label.panel-block:hover {
 
 .dropdown.is-open .dropdown-menu {
   display: block;
+}
+
+/* ========================================
+   =========== Dropdown Override ==========
+   ======================================== */
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  -webkit-box-shadow: 0 0 8px #777;
+          box-shadow: 0 0 8px #777;
+  display: none;
+  left: 0;
+  position: absolute;
+  top: 103%;
+  z-index: 1000;
+  padding: 10px 0 0px 0;
+  min-width: 200px;
+  -webkit-box-shadow: 0 0 1px rgba(57, 70, 78, 0.15), 0 20px 55px -8px rgba(57, 70, 78, 0.25);
+          box-shadow: 0 0 1px rgba(57, 70, 78, 0.15), 0 20px 55px -8px rgba(57, 70, 78, 0.25);
+  text-align: left;
+}
+
+.dropdown-menu li.seperator {
+  margin: 5px 0;
+  width: 100%;
+  border-top: 1px solid #ccc;
+}
+
+.dropdown-menu li > a {
+  display: block;
+  padding: 5px 0 5px 15px;
+  margin: 5px 0;
+}
+
+.dropdown-menu li > a:hover {
+  background-color: whitesmoke;
+}
+
+.dropdown.is-open .dropdown-menu {
+  display: block;
+}
+
+.dropdown.is-aligned-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+/* ========================================
+   =========== Nav Item Override ==========
+   ======================================== */
+
+button.navbar-item {
+  background-color: #fff;
+  border: none;
+  color: #7a7a7a;
+}
+
+button.navbar-item:hover {
+  color: #363636;
+}
+
+button.navbar-item.is-active {
+  color: #363636;
+}
+
+button.navbar-item.is-tab {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  padding-bottom: calc(0.75rem - 1px);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: calc(0.75rem - 1px);
+}
+
+button.navbar-item:hover {
+  border-bottom-color: #00d1b2;
+  border-top-color: transparent;
+}
+
+button.navbar-item.is-active {
+  border-bottom: 3px solid #00d1b2;
+  color: #00d1b2;
+  padding-bottom: calc(0.75rem - 3px);
+}
+
+.navbar-item img {
+  max-height: 2.5rem;
+}
+
+.navbar {
+  height: 3.8rem;
 }
 
 .m-t-5 {
