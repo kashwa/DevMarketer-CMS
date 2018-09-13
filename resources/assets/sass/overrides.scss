@@ -39,9 +39,20 @@
 }
 
 /* ========================================
+   =========== Text Override ==========
+   ======================================== */
+.is-muted{
+  color: $grey-light;
+}
+
+a.is-muted:hover{
+  color: $grey;
+}
+
+/* ========================================
    =========== Dropdown Override ==========
    ======================================== */
- // Bulma doesn't come with a dropdown, so I have to take
+// Bulma doesn't come with a dropdown, so I have to take
 // matters into my own hands. This creates a dropdown menu
 .dropdown {
   position: relative;

@@ -10,6 +10,10 @@ import Buefy from 'buefy';
  */
 Vue.use(Buefy);
 
+var app = new Vue({
+    el: '#app',
+})
+
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 
