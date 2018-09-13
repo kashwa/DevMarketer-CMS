@@ -32,9 +32,9 @@
                 </div>
                 
                 <div class="navbar-end">
-                    @if (!Auth::guest())
-                        <a href="#" class="navbar-item is-tab">LogIn</a>
-                        <a href="#" class="navbar-item is-tab">Join the community</a>
+                    @if (Auth::guest())
+                        <a href="{{route('login')}}" class="navbar-item is-tab">LogIn</a>
+                        <a href="{{route('register')}}" class="navbar-item is-tab">Join the community</a>
                     @else
                         <button class="dropdown is-aligned-right navbar-item is-tab">
                             Hey Aabed <span class="icon"><i class="fa fa-caret-down"></i></span>
