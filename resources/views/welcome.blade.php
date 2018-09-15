@@ -8,13 +8,15 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>DevMarketer</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 
-
+        {{-- Icon --}}
+        <link rel="shortcut icon" href="{{ asset('devmarketer-icon.jpg') }}">
+        
         <!-- Styles -->
         <style>
             html, body {
