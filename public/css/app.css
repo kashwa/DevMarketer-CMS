@@ -17714,6 +17714,16 @@ button.navbar-item.is-active {
   height: 3.8rem;
 }
 
+.navbar-start > a:hover {
+  color: #0AB2A1;
+  background-color: transparent;
+}
+
+.navbar-end > a:hover {
+  color: #0AB2A1;
+  background-color: transparent;
+}
+
 .m-t-5 {
   margin-top: 5px !important;
 }
@@ -18096,5 +18106,18 @@ button.navbar-item.is-active {
 
 .p-r-100 {
   padding-right: 100px !important;
+}
+
+.side-menu {
+  position: fixed;
+  height: 100vh;
+  widows: 200px;
+  background-color: white;
+  overflow-y: scroll;
+}
+
+.side-menu .menu .menu-list li.side-menu-item > a:hover {
+  color: #0AB2A1;
+  background-color: transparent;
 }
 

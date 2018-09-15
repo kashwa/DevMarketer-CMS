@@ -1,0 +1,20 @@
+.side-menu{
+    position: fixed;
+    height: 100vh;
+    widows: 200px;
+    background-color: white;
+    overflow-y: scroll;
+
+    .menu{
+        .menu-list{
+            li{
+                &.side-menu-item {
+                    &>a:hover {
+                        color: #0AB2A1;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}

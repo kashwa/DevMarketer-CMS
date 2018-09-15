@@ -144,3 +144,17 @@ a.is-muted:hover{
 .navbar {
   height: 3.8rem;
 }
+
+.navbar-start{
+  &>a:hover {
+    color: #0AB2A1;
+    background-color: transparent;
+  }
+}
+
+.navbar-end{
+  &>a:hover {
+    color: #0AB2A1;
+    background-color: transparent;
+  }
+}
