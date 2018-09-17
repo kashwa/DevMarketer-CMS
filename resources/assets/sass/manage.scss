@@ -1,13 +1,13 @@
-.side-menu{
+.side-menu {
     position: fixed;
     height: 100vh;
     widows: 200px;
     background-color: white;
     overflow-y: scroll;
 
-    .menu{
-        .menu-list{
-            li{
+    .menu {
+        .menu-list {
+            li {
                 &.side-menu-item {
                     &>a:hover {
                         color: #0AB2A1;
@@ -17,4 +17,15 @@
             }
         }
     }
+}
+
+.management-area {
+    position: absolute;
+    top: 4rem;
+    left: 200px;
+    right: 0;
+}
+
+.flex-container {
+    margin: 10px 25px;
 }

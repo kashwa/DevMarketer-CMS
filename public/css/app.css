@@ -18121,3 +18121,14 @@ button.navbar-item.is-active {
   background-color: transparent;
 }
 
+.management-area {
+  position: absolute;
+  top: 4rem;
+  left: 200px;
+  right: 0;
+}
+
+.flex-container {
+  margin: 10px 25px;
+}
+
