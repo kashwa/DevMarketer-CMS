@@ -8,7 +8,7 @@
         <p class="menu-label">Administration</p>
 
         <ul class="menu-list">
-            <li class="side-menu-item"><a href="#">Manage Users</a></li>
+            <li class="side-menu-item"><a href="{{route('users.index')}}">Manage Users</a></li>
             <li class="side-menu-item"><a href="#">Roles &amp; Permissions</a></li>
         </ul>
     </aside>

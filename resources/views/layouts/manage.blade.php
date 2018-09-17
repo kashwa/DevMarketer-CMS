@@ -23,12 +23,8 @@
     
     @include('_includes.nav.manage')
 
-    <div id="app">
-    
-        {{-- content --}}
+    <div class="management-area" id="app">   
         @yield('content')
-    
-        {{-- footer --}}
     </div>
 
     <!-- Scripts -->
