@@ -25,6 +25,8 @@
                             <input type="text" class="input" name="email" id="email">
                         </p>
                     </div>
+                    
+{{-- TODO: MODIFY ERROR --}}
 
                     <div class="field">
                         <label for="password" class="label">Password</label>
