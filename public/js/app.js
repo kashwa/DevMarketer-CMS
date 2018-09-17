@@ -11952,10 +11952,6 @@ window.Vue = __webpack_require__(9);
  */
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
 
-var app = new Vue({
-    el: '#app'
-});
-
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 

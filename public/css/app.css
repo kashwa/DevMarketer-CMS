@@ -18132,3 +18132,12 @@ button.navbar-item.is-active {
   margin: 10px 25px;
 }
 
+.pagination-wrapper .pagination > a {
+  color: #0AB2A1;
+  background-color: transparent;
+}
+
+.pagination-wrapper .pagination .pagination-list li > a.pagination-link {
+  background-color: #0AB2A1;
+}
+

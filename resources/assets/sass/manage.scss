@@ -29,3 +29,19 @@
 .flex-container {
     margin: 10px 25px;
 }
+
+.pagination-wrapper {
+    .pagination {
+        &>a {
+            color: #0AB2A1;
+            background-color: transparent;
+        }
+        .pagination-list {
+                li {
+                    &>a.pagination-link {
+                    background-color: #0AB2A1;
+                }
+            }
+        }
+    }
+}
