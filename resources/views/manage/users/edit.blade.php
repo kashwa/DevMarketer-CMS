@@ -31,20 +31,18 @@
 
                     <div class="field">
                         <label for="password" class="label">Password</label>
-                        <b-radio-group v-model="password_options">
                             <div class="field">
-                                <b-radio value="keep">Do Not change password</b-radio>
+                                <b-radio v-model="password_options" name="passwordoptions" native-value="keep"> Do Not change password</b-radio>
                             </div>
                             <div class="field">
-                                <b-radio value="auto">Auto-Generate new password</b-radio>
+                                <b-radio v-model="password_options" name="passwordoptions" native-value="auto"> Auto-Generate new password</b-radio>
                             </div>
                             <div class="field">
-                                <b-radio value='manual'>Manually set new password</b-radio>
+                                <b-radio v-model="password_options" name="passwordoptions" native-value='manual'> Manually set new password</b-radio>
                                 <p class="control">
-                                    <input type="text" class="input" name="password" id="password" v-if="password_options =='manual'" placeholder="Manually give a password to this user">
+                                    <input type="text" class="input m-t-10" name="password" id="password" v-if="password_options =='manual'" placeholder="Manually give a password to this user">
                                 </p>
                             </div>
-                        </b-radio-group>
                     </div>
 
                     <button class="button is-primary">Edit user</button>
@@ -60,7 +58,7 @@
         var app = new Vue({
             el: '#app',
             data: {
-                password_options: 'keep'
+                password_options: 'keep',
             }
         });
     </script>

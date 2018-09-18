@@ -11950,6 +11950,7 @@ window.Vue = __webpack_require__(9);
  * they can only be used with a " Vue Object ".
  */
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
+// Vue.component('b-radio-group', {});
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 

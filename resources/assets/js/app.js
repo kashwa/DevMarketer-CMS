@@ -8,7 +8,7 @@ import Buefy from 'buefy';
  * they can only be used with a " Vue Object ".
  */
 Vue.use(Buefy);
-
+// Vue.component('b-radio-group', {});
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
