@@ -32,15 +32,15 @@
                     <div class="field">
                         <label for="password" class="label">Password</label>
                             <div class="field">
-                                <b-radio v-model="password_options" name="passwordoptions" native-value="keep"> Do Not change password</b-radio>
+                                <b-radio v-model="password_options" name="password_options" native-value="keep"> Do Not change password</b-radio>
                             </div>
                             <div class="field">
-                                <b-radio v-model="password_options" name="passwordoptions" native-value="auto"> Auto-Generate new password</b-radio>
+                                <b-radio v-model="password_options" name="password_options" native-value="auto"> Auto-Generate new password</b-radio>
                             </div>
                             <div class="field">
-                                <b-radio v-model="password_options" name="passwordoptions" native-value='manual'> Manually set new password</b-radio>
+                                <b-radio v-model="password_options" name="password_options" native-value='manual'> Manually set new password</b-radio>
                                 <p class="control">
-                                    <input type="text" class="input m-t-10" name="password" id="password" v-if="password_options =='manual'" placeholder="Manually give a password to this user">
+                                    <input type="password" class="input m-t-10" name="password" id="password" v-if="password_options =='manual'" placeholder="Manually give a password to this user">
                                 </p>
                             </div>
                     </div>
@@ -51,15 +51,31 @@
         </div>
 
     </div> {{-- end of .flex-container --}}
+
+    {{-- Error Validation and Success Notation --}}
+    @if(count($errors) > 0)
+        @foreach($errors -> all() as $error)
+            <div class="notification is-danger">
+                {{$error}}
+            </div>
+        @endforeach
+    @endif
+
+    @if(session('success'))
+        <div class="notification is-success">
+            <strong>Successfully!</strong> {{session('success')}}
+        </div>
+    @endif
+
 @endsection
 
 @section('scripts')
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                password_options: 'keep',
-            }
-        });
-    </script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            password_options: 'keep',
+        }
+    });
+</script>
 @endsection

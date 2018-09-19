@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\User;
+use Session;
+use Hash;
+use DB;
 
 class UserController extends Controller
 {
+
+    public function __construct(Request $request) {
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,12 +45,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'name'  => 'required|max:255',
-            'email' => 'reauired|email|unique:users'
+            'email' => 'required|email|unique:users'
         ]);
 
-        if(Request::has('password') && !empty($request->password)){
+        if($this->request->has('password') && !empty($request->password)){
             // entered manually
             $password = trim($request->password);
         
@@ -50,7 +59,7 @@ class UserController extends Controller
             $length = 10;
             $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
             $str = '';
-            $max = mb_strln($keyspace, '8bit') - 1;
+            $max = mb_strlen($keyspace, '8bit') - 1;
 
             for ($i=0; $i < $length; ++$i) { 
                 $str .= $keyspace[random_int(0, $max)];
@@ -61,12 +70,13 @@ class UserController extends Controller
 
         // Save the user.
         $user = new User();
-        $user->name     = $request->name;
-        $user->email    = $request->email;
+        $user->name     = $request['name'];
+        $user->email    = $request['email'];
         $user->password = Hash::make($password);
         
         if ($user->save()){
             return redirect()->route('users.show', $user->id);
+            Session::flash('success', 'User created');
         } else {
             Session::flash('danger', 'Sorry, a problem happened while saving that user.');
             return redirect()->route('users.create');
@@ -106,7 +116,38 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'  => 'required|max:255',
+            'email' => 'required|email|unique:users,email,'.$id
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+
+        if ($request->password_options == 'auto'){
+            # auto generate password
+            $length = 10;
+            $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+            $str = '';
+            $max = mb_strlen($keyspace, '8bit') - 1;
+
+            for ($i=0; $i < $length; ++$i) { 
+                $str .= $keyspace[random_int(0, $max)];
+            }
+            $user->password = Hash::make($str);
+
+        } elseif($request->password_options == 'manual'){
+            $user->password = Hash::make($request->password);
+        }
+
+        if($user->save()){
+            return redirect()->route('users.show', $id);
+            $request->session()->flash('success', 'User updated');
+        }else{
+            Session::flash('error', 'There was an error saving this updated user, Try again!');
+            return redirect()->route('users.edit', $id);
+        }
     }
 
     /**
