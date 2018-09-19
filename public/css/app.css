@@ -18132,6 +18132,10 @@ button.navbar-item.is-active {
   margin: 10px 25px;
 }
 
+.flex-container > hr {
+  background-color: #0AB2A1;
+}
+
 .pagination-wrapper .pagination > a {
   color: #0AB2A1;
   background-color: transparent;

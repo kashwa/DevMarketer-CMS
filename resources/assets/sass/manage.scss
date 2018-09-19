@@ -28,6 +28,9 @@
 
 .flex-container {
     margin: 10px 25px;
+    &>hr {
+        background-color: #0AB2A1;
+    }
 }
 
 .pagination-wrapper {
