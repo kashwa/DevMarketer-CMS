@@ -27,19 +27,4 @@
             </div>
         </div>
     </div>
-
-    {{-- Error Validation and Success Notation --}}
-    @if(count($errors) > 0)
-        @foreach($errors -> all() as $error)
-            <div class="notification is-danger">
-                {{$error}}
-            </div>
-        @endforeach
-    @endif
-
-    @if(session('success'))
-        <div class="notification is-success">
-            <strong>Successfully!</strong> {{session('success')}}
-        </div>
-    @endif
 @endsection
