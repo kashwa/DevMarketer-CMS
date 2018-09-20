@@ -11951,9 +11951,9 @@ window.Vue = __webpack_require__(9);
  */
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
 
-// TODO: make jquery function to hover over [hey user] button
+// TODO: make jquery function to CLICK [hey user] button
 $(document).ready(function () {
-    $('button.dropdown').hover(function (e) {
+    $('button.dropdown').click(function (e) {
         $(this).toggleClass('is-open');
     });
 });

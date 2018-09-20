@@ -10,9 +10,9 @@ import Buefy from 'buefy';
 Vue.use(Buefy);
 
 
-// TODO: make jquery function to hover over [hey user] button
+// TODO: make jquery function to CLICK [hey user] button
 $(document).ready(function(){
-    $('button.dropdown').hover(function(e){
+    $('button.dropdown').click(function(e){
         $(this).toggleClass('is-open');
     });
 });
