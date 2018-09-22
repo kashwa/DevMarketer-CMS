@@ -1,5 +1,7 @@
 .side-menu {
-    position: fixed;
+    position: absolute;
+    top: 4rem;
+    bottom: 0;
     height: 100vh;
     widows: 200px;
     background-color: white;
