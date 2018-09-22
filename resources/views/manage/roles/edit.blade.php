@@ -36,7 +36,7 @@
                     <div class="field">
                         <p class="control">
                             <label for="description" class="label">Description</label>
-                            <input type="text" class="input" value="{{$role->description}}" id="description">
+                            <input type="text" class="input" name="description" value="{{$role->description}}" id="description">
                         </p>
                     </div>
                     <input type="hidden" :value="permissionsSelected" name="permissions">

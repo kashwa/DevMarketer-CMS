@@ -55,7 +55,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role = Role::findOrFail($id);
+        $role = Role::with('permissions')->findOrFail($id); 
         return view('manage.roles.show')->withRole($role);
     }
 
@@ -92,8 +92,6 @@ class RoleController extends Controller
         $role->description = $request['description'];
         $role->save();
         
-// TODO: fix [description] error
-
         if ($request->permissions) {
             $role->syncPermissions(explode(',', $request->permissions));
         }
