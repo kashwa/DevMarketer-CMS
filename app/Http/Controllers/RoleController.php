@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\Permission;
 use Illuminate\Http\Request;
+use Session;
 
 class RoleController extends Controller
 {
+
+    # The best practice for (validate request) to prevent error.
+    public function __construct(Request $request){
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +67,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::where('id', $id)->with('permissions')->first();
+        $permissions = Permission::all();
+        
+        return view('manage.roles.edit')->withRole($role)->withPermissions($permissions);
     }
 
     /**
@@ -71,7 +82,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'display_name' => 'required|max:255',
+            'description' => 'sometimes|max:255'
+        ]);
+
+        $role = Role::findOrFail($id);
+        $role->display_name = $request['display_name'];
+        $role->description = $request['description'];
+        $role->save();
+        
+// TODO: fix [description] error
+
+        if ($request->permissions) {
+            $role->syncPermissions(explode(',', $request->permissions));
+        }
+        Session::flash('success', 'Successfully updated the '. $role->display_name. ' role in the database.');
+        return redirect()->route('roles.show', $id);
     }
 
     /**

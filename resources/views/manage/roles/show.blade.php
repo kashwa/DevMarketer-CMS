@@ -18,7 +18,7 @@
           <article class="media">
             <div class="media-content">
               <div class="content">
-                <h2 class="title">Permissions allowed : </h1>
+                <h2 class="title">Permissions allowed : </h2>
                 <ul>
                   @foreach ($role->permissions as $r)
                     <li>{{$r->display_name}} <em class="m-l-15">({{$r->description}})</em></li>
