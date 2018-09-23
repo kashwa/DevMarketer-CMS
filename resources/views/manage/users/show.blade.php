@@ -24,6 +24,18 @@
                     <label for="email" class="label">Email:</label>
                     <pre>{{$users->email}}</pre>
                 </div>
+
+                <div class="field">
+                    <label for="email" class="label">Roles:</label>
+                    <ul>
+                        <pre>{{ $users->roles->count() == 0 ? 'This user has no roles yet!' : '' }}</pre>
+                        <pre>
+                            @foreach ($users->roles as $role)
+                                <li><strong>{{$role->display_name}}</strong> (<small>{{$role->description}}</small>)</li>
+                            @endforeach
+                        </pre>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
