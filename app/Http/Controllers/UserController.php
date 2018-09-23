@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\User;
-use Session;
-use Hash;
 use DB;
+
+use Hash;
+use Session;
+use App\Role;
+use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -103,8 +104,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('manage.users.edit')->withUsers($user);
+        $roles = Role::all();
+        $user = User::where('id', $id)->with('roles')->first();
+        return view('manage.users.edit')->withUsers($user)->withRoles($roles);
     }
 
     /**

@@ -44,9 +44,21 @@
                                 </p>
                             </div>
                     </div>
-
+                </div> {{-- end of first .column --}}
+                
+                <div class="column">
+                    <label for="roles" class="label">Roles</label>
+                    <input type="hidden" name="roles" :value="rolesSelected" />
+                    @foreach ($roles as $role)
+                        <b-checkbox v-model="rolesSelected" :native-value="{{$role->id}}">{{$role->display_name}}</b-checkbox>
+                        <br>
+                    @endforeach
+                </div>
+            </form>
+            <div class="columns">
+                <div class="column">
                     <button class="button is-primary">Edit user</button>
-                </form>
+                </div>
             </div>
         </div>
 
@@ -75,6 +87,7 @@
         el: '#app',
         data: {
             password_options: 'keep',
+            rolesSelected: {!! $users->roles->pluck('id') !!}
         }
     });
 </script>
