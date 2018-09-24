@@ -35,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('manage.users.create');
+        $roles = Role::all();
+        return view('manage.users.create')->withRoles($roles);
     }
 
     /**
@@ -75,13 +76,20 @@ class UserController extends Controller
         $user->email    = $request['email'];
         $user->password = Hash::make($password);
         
-        if ($user->save()){
-            return redirect()->route('users.show', $user->id);
-            Session::flash('success', 'User created');
-        } else {
-            Session::flash('danger', 'Sorry, a problem happened while saving that user.');
-            return redirect()->route('users.create');
-        }
+        $user->save();
+
+        if ($request->roles)
+            $user->syncRoles(explode(',', $request->roles));
+
+        return redirect()->route('users.show', $user->id);
+
+        // if (){
+        //     return redirect()->route('users.show', $user->id);
+        //     Session::flash('success', 'User created');
+        // } else {
+        //     Session::flash('danger', 'Sorry, a problem happened while saving that user.');
+        //     return redirect()->route('users.create');
+        // }
     }
 
     /**
