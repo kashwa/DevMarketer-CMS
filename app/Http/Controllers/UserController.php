@@ -143,13 +143,18 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        if($user->save()){
-            return redirect()->route('users.show', $id);
-            $request->session()->flash('success', 'User updated');
-        }else{
-            Session::flash('error', 'There was an error saving this updated user, Try again!');
-            return redirect()->route('users.edit', $id);
-        }
+        $user->save();
+
+        $user->syncRoles(explode(',', $request->roles));
+        return redirect()->route('users.show', $id);
+        
+        // if(){
+        //     return redirect()->route('users.show', $id);
+        //     $request->session()->flash('success', 'User updated');
+        // }else{
+        //     Session::flash('error', 'There was an error saving this updated user, Try again!');
+        //     return redirect()->route('users.edit', $id);
+        // }
     }
 
     /**
