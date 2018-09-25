@@ -11,7 +11,7 @@
         </div>
         
         <div class="navbar-end">
-            @if (Auth::guest())
+            @guest
                 <a href="{{route('login')}}" class="navbar-item is-tab">LogIn</a>
                 <a href="{{route('register')}}" class="navbar-item is-tab">Join the community</a>
             @else
@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                 </button>
-            @endif
+            @endguest
         </div>
     </div>
 </nav>
