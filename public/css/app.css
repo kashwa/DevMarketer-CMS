@@ -18118,7 +18118,7 @@ button.navbar-item.is-active {
   overflow-y: scroll;
 }
 
-.side-menu .menu .menu-list li.side-menu-item > a:hover {
+.side-menu .menu .menu-list li.side-menu-item > a.is-clk:active {
   color: #0AB2A1;
   background-color: transparent;
 }
@@ -18144,6 +18144,22 @@ button.navbar-item.is-active {
 }
 
 .pagination-wrapper .pagination .pagination-list li > a.pagination-link {
+  background-color: #0AB2A1;
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.menu-list li ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.menu-list a.is-active {
   background-color: #0AB2A1;
 }
 

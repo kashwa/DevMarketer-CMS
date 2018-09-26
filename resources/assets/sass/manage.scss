@@ -11,7 +11,7 @@
         .menu-list {
             li {
                 &.side-menu-item {
-                    &>a:hover {
+                    &>a.is-clk:active {
                         color: #0AB2A1;
                         background-color: transparent;
                     }
@@ -49,4 +49,18 @@
             }
         }
     }
+}
+
+.submenu{
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-list li ul{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.menu-list a.is-active{
+    background-color: #0AB2A1;
 }
