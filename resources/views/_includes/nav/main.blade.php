@@ -1,13 +1,29 @@
 {{-- header --}}
 <nav class="navbar has-shadow">
     <div class="container">
-        <div class="navbar-start">
-            <a class="navbar-item" href="{{route('home')}}">
+        <div class="navbar-brand">
+            <a class="navbar-item is-paddingless m-r-15" href="{{route('home')}}">
                 <img src="{{ asset('images/devmarketer-logo.png') }}" alt="DevMarketer"/>
             </a>
-            <a href="#" class="navbar-item is-tab is-hidden-mobile m-l-10">Learn</a>
-            <a href="#" class="navbar-item is-tab is-hidden-mobile">Discuss</a>
-            <a href="#" class="navbar-item is-tab is-hidden-mobile">Share</a>
+
+            @if (Request::Segment(1) == 'manage')
+                <a class="navbar-item" id="admin-slideout-button">
+                    <span class="icon is-hidden-desktop"><i class="fa fa-arrow-circle-o-right"></i></span>
+                </a>
+            @endif
+
+            <button class="button navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="#" class="navbar-item is-tab">Learn</a>
+                    <a href="#" class="navbar-item is-tab">Discuss</a>
+                    <a href="#" class="navbar-item is-tab">Share</a>
+                </div>
+            </div>
         </div>
         
         <div class="navbar-end">
@@ -15,7 +31,7 @@
                 <a href="{{route('login')}}" class="navbar-item is-tab">LogIn</a>
                 <a href="{{route('register')}}" class="navbar-item is-tab">Join the community</a>
             @else
-                <button class="dropdown is-aligned-right navbar-item is-tab">
+                <button class="dropdown navbar-item has-dropdown is-hoverable">
                     Hey {{Auth::user()->name}} <span class="icon"><i class="fa fa-caret-down"></i></span>
 
                     <ul class="dropdown-menu">
