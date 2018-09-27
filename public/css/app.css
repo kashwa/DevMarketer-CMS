@@ -18108,24 +18108,51 @@ button.navbar-item.is-active {
   padding-right: 100px !important;
 }
 
-.side-menu {
-  position: absolute;
+#admin-side-menu {
+  position: fixed;
+  left: -200px;
   top: 4rem;
   bottom: 0;
   height: 100vh;
   widows: 200px;
   background-color: white;
   overflow-y: scroll;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
 }
 
-.side-menu .menu .menu-list li.side-menu-item > a.is-clk:active {
+#admin-side-menu.is-active {
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
+  left: 0;
+}
+
+@media screen and (min-width: 1088px) {
+  #admin-side-menu {
+    left: 0;
+  }
+}
+
+#admin-side-menu .menu .menu-list li.side-menu-item > a.is-clk:active {
   color: #0AB2A1;
   background-color: transparent;
 }
 
-.side-menu .menu .menu-list .side-menu-item .is-active {
+#admin-side-menu .menu .menu-list .side-menu-item .is-active {
   background-color: #0AB2A1;
   color: white;
+}
+
+#admin-slideout-button {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#admin-slideout-button.is-active {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 .management-area {
@@ -18166,5 +18193,9 @@ button.navbar-item.is-active {
 
 .menu-list a.is-active {
   background-color: #0AB2A1;
+}
+
+.navbar-burger {
+  border: none;
 }
 

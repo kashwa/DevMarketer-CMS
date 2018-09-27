@@ -11951,9 +11951,9 @@ window.Vue = __webpack_require__(9);
  */
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_buefy___default.a);
 
-// TODO: make jquery function to CLICK [hey user] button
+// TODO: make jquery function to HOVER [hey user] button
 $(document).ready(function () {
-    $('button.dropdown').click(function (e) {
+    $('button.dropdown').hover(function (e) {
         $(this).toggleClass('is-open');
     });
 });
@@ -52930,6 +52930,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 /***/ (function(module, exports) {
 
 var accordions = document.getElementsByClassName('has-submenu');
+var slideoutButton = document.getElementById('admin-slideout-button');
+
+function setSubmenuStyles(submenu, maxHeight, margins) {
+    submenu.style.maxHeight = maxHeight;
+    submenu.style.marginTop = margins;
+    submenu.style.marginBottom = margins;
+}
+
+slideoutButton.onclick = function () {
+    this.classList.toggle('is-active');
+    document.getElementById('admin-side-menu').classList.toggle('is-active');
+};
 
 for (var i = 0; i < accordions.length; i++) {
 
