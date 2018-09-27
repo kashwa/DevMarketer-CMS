@@ -17,6 +17,14 @@
                     }
                 }
             }
+            
+            .side-menu-item {
+                .is-active{
+                    background-color: #0AB2A1;
+                    color: white;
+                }
+            }
+            
         }
     }
 }

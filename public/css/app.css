@@ -18123,6 +18123,11 @@ button.navbar-item.is-active {
   background-color: transparent;
 }
 
+.side-menu .menu .menu-list .side-menu-item .is-active {
+  background-color: #0AB2A1;
+  color: white;
+}
+
 .management-area {
   position: absolute;
   top: 4rem;
