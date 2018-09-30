@@ -21,9 +21,9 @@
                         <b-input type="text" placeholder="Post Title" size="is-large">
                         </b-input>
                     </b-field>
-                    <p>
-                        {{url('/blog')}}
-                    </p>
+                    <slug-widget>
+                        
+                    </slug-widget>
                     <b-field class="m-t-40">
                         <b-input type="textarea" placeholder="Compose your masterpiece..." rows="20">
                         </b-input>
@@ -46,7 +46,7 @@
                         <div class="post-status-widget widget-area">
                             <div class="status">
                                 <div class="status-icon">
-                                    <b-icon icon="assignment" size="is-medium"></b-icon>
+                                    <i class="fa fa-book fa-3x"></i>
                                 </div>
                                 <div class="status-details">
                                     <h4><span class="status-emphasis">Draft</span> Saved</h4>
