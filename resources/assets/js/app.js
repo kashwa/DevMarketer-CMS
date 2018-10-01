@@ -2,6 +2,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.Slug = require('slug');
+Slug.defaults.mode = 'rfc3986';
 
 import Buefy from 'buefy';
 
