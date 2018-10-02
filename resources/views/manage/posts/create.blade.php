@@ -6,10 +6,7 @@
             <div class="column">
                 <h1 class="title">Add new blog post</h1>
             </div>
-            <div class="column">
-                {{-- <a href="{{route('users.create')}}" class="button is-primary is-pulled-right">
-                    <i class="fa fa-user-plus m-r-10"></i> Create new user</a> --}}
-            </div>
+            <div class="column"></div>
         </div>
         <hr class="m-t-0">
     

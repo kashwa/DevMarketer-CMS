@@ -18,13 +18,9 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                    <label for="display_name">Display Name : </label><strong>{{$permission->display_name}}</strong>
-                    <br>
-                    <br>
-                    <label for="name">Name : </label><strong>{{$permission->name}}</strong>
-                    <br>
-                    <br>
-                    <label for="description">Description : </label><strong>{{$permission->description}}</strong>
+                  <label for="display_name">Display Name : </label><strong>{{$permission->display_name}}</strong><br><br>
+                  <label for="name">Name : </label><strong>{{$permission->name}}</strong><br><br>
+                  <label for="description">Description : </label><strong>{{$permission->description}}</strong>
                 </p>
               </div>
             </div>

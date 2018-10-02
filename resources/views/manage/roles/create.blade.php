@@ -54,7 +54,6 @@
                         <h2 class="title">Permissions allowed : </h2>
                         <ul>
                         @foreach ($permissions as $permission)
-                            {{-- <li>{{$r->display_name}} <em class="m-l-15">({{$r->description}})</em></li> --}}
                             <div class="field">
                                 <b-checkbox v-model="permissionsSelected" native-value="{{$permission->id}}">{{$permission->display_name}} <em>{{$permission->description}}</em></b-checkbox>
                             </div>
