@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:superadministrator|administrator|editor|author|contributor');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,5 +87,15 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Generate api - Checks the uniqueness of
+     * the newly created slug.
+     *
+     * @return void
+     */
+    public function apiCheckUnique(Request $request) {
+        return json_encode(!Post::where('slug', '=', $request->slug)->exists());
     }
 }
