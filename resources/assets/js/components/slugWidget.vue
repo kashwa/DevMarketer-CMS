@@ -85,29 +85,32 @@
                 this.wasEdited = false;
                 this.isEditing = false;
             },
-            setSlug: function (newVal, counter = 0) {
+            setSlug: function (newVal, count = 0) {
                 // Slugify the newValue
-                let slug = Slug(newVal, (count > 0 ? `-${count}` : ''));
+                let slug = Slug(newVal + (count > 0 ? `-${count}` : ''));
                 let vm = this;
 
-                // Test with api req. to see if unique
-                axios.get('api/posts/unique', {
-                    params: {
-                        api_token: vm.api_token,
-                        slug: slug
-                    }
-                }).then(function (response) {
-                    // if unique, set slug & emit event
-                    if (response.data) {
-                        vm.slug = slug;
-                        this.$emit('slug-changed', this.slug);
-                    } else{
-                        // customize slug to be unique & test again
-                        vm.setSlug(newVal, counter+1)
-                    }
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                if (this.api_token && slug) {
+                    // Test with api req. to see if unique
+                    axios.get('/api/posts/unique', {
+                        params: {
+                            api_token: vm.api_token,
+                            slug: slug
+                        }
+                    }).then(function (response) {
+                        // if unique, set slug & emit event
+                        if (response.data) {
+                            vm.slug = slug;
+                            vm.$emit('slug-changed', slug);
+                        } else{
+                            // customize slug to be unique & test again
+                            vm.setSlug(newVal, counter+1)
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+
             }
         },
         watch: {
