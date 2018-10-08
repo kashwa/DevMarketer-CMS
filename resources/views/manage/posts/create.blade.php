@@ -18,7 +18,7 @@
                         <b-input type="text" placeholder="Post Title" size="is-large" v-model="title">
                         </b-input>
                     </b-field>
-                    <slug-widget url="{{url('/')}}" subdirectory="blog" :title="title" @slug-changed="updateSlug"></slug-widget>
+                    <slug-widget url="{{url('/')}}" subdirectory="blog" :title="title" v-on:copied="slugCopied" @slug-changed="updateSlug"></slug-widget>
                     <input type="hidden" v-model="slug" name="slug">
                     <b-field class="m-t-40">
                         <b-input type="textarea" placeholder="Compose your masterpiece..." rows="20">
@@ -78,6 +78,9 @@
             methods: {
                 updateSlug: function (val) {
                     this.slug = val;
+                },
+                slugCopied: function(type, msg, val){
+                    notifications.toast(msg, {type : `is-${type}`});
                 }
             }
         });
