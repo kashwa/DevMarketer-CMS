@@ -41,8 +41,8 @@
     </div>
 
     <div class="button-wrapper wrapper">
-      <button class="save-slug-button button is-small" v-show="!isEditing" @click.prevent="editSlug">{{slug.length < 1 ? 'Create New Slug' : 'Edit'}}</button>
-      <b-dropdown hoverable v-show="!isEditing && slug.length > 1">
+      <button class="save-slug-button button is-small" v-show="!isEditing" @click.prevent="editSlug">{{slug.length &lt; 1 ? 'Create New Slug' : 'Edit'}}</button>
+      <b-dropdown hoverable v-show="!isEditing && slug.length &gt; 1">
         <button class="save-slug-button button is-small" slot="trigger">
           <span>Actions </span>
           <i class="fa fa-caret-down m-l-10" size="is-small"></i>
