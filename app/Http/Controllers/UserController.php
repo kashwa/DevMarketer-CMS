@@ -8,6 +8,7 @@ use Hash;
 use Session;
 use App\Role;
 use App\User;
+use LaraFlash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -55,7 +56,7 @@ class UserController extends Controller
         if($this->request->has('password') && !empty($request->password)){
             // entered manually
             $password = trim($request->password);
-        
+
         } else {
             # SET AUTO_GENERATE
             $length = 10;
@@ -63,7 +64,7 @@ class UserController extends Controller
             $str = '';
             $max = mb_strlen($keyspace, '8bit') - 1;
 
-            for ($i=0; $i < $length; ++$i) { 
+            for ($i=0; $i < $length; ++$i) {
                 $str .= $keyspace[random_int(0, $max)];
             }
 
@@ -75,21 +76,21 @@ class UserController extends Controller
         $user->name     = $request['name'];
         $user->email    = $request['email'];
         $user->password = Hash::make($password);
-        
+
         $user->save();
+        // LaraFlash::success('Successfully, User created');
 
         if ($request->roles)
             $user->syncRoles(explode(',', $request->roles));
 
+
         return redirect()->route('users.show', $user->id);
 
-        // if (){
-        //     return redirect()->route('users.show', $user->id);
-        //     Session::flash('success', 'User created');
-        // } else {
-        //     Session::flash('danger', 'Sorry, a problem happened while saving that user.');
-        //     return redirect()->route('users.create');
+        // if (!$user->save()) {
+        //   LaraFlash::danger('Sorry, a problem happened while saving that user.');
+        //   return redirect()->route('users.create');
         // }
+
     }
 
     /**
@@ -142,7 +143,7 @@ class UserController extends Controller
             $str = '';
             $max = mb_strlen($keyspace, '8bit') - 1;
 
-            for ($i=0; $i < $length; ++$i) { 
+            for ($i=0; $i < $length; ++$i) {
                 $str .= $keyspace[random_int(0, $max)];
             }
             $user->password = Hash::make($str);
@@ -154,15 +155,10 @@ class UserController extends Controller
         $user->save();
 
         $user->syncRoles(explode(',', $request->roles));
+
+        LaraFlash::success("User Updated Successfully")->keep();
         return redirect()->route('users.show', $id);
-        
-        // if(){
-        //     return redirect()->route('users.show', $id);
-        //     $request->session()->flash('success', 'User updated');
-        // }else{
-        //     Session::flash('error', 'There was an error saving this updated user, Try again!');
-        //     return redirect()->route('users.edit', $id);
-        // }
+
     }
 
     /**
