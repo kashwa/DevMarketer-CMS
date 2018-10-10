@@ -39,7 +39,7 @@ return [
         *  This is an arbitrary integer to indicate priority over other
         *  notifications. A higher number is considered higher priority.
          */
-        'priority' => 5,
+        'priority' => 7,
         /**
          * Notification Title
 		 *  (ie. "Success: ", "Warning: ", "Notice: ", null)
