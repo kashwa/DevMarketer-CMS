@@ -1,4 +1,4 @@
-@extends('layouts.manage') 
+@extends('layouts.manage')
 
 @section('content')
     <div class="flex-container">
@@ -12,6 +12,16 @@
         </div>
         <hr class="m-t-0">
 
+        {{-- how to access each user's post --}}
+        @foreach ($posts as $post)
+
+          @if (Auth::user()->id == $post->author_id)
+            {{'Title : '.$post->title}}<br><br><br>
+            {{'content : '.$post->content}}<br><br><br>
+            {{'Author ID: '.$post->author_id}}
+          @endif
+
+        @endforeach
 
 
     </div> {{-- End of .flex-container --}}
