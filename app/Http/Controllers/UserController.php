@@ -157,7 +157,7 @@ class UserController extends Controller
         $user->syncRoles(explode(',', $request->roles));
 
         // LaraFlash::success("Successfully User updated.")
-        $notif = LaraFlash::success("Successfully User updated.");
+        LaraFlash::success("Successfully User updated.");
         return redirect()->route('users.show', $id);
 
     }

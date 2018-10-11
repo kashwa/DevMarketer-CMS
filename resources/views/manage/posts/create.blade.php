@@ -28,13 +28,13 @@
           <div class="columns">
               <div class="column is-three-quarters-desktop">
                   <b-field>
-                      <b-input type="text" placeholder="Post Title" size="is-large" v-model="title">
+                      <b-input type="text" name="post_title" placeholder="Post Title" size="is-large" v-model="title">
                       </b-input>
                   </b-field>
                   <slug-widget url="{{url('/')}}" subdirectory="blog" :title="title" v-on:copied="slugCopied" @slug-changed="updateSlug"></slug-widget>
                   <input type="hidden" v-model="slug" name="slug">
                   <b-field class="m-t-40">
-                      <b-input type="textarea" placeholder="Compose your masterpiece..." rows="17">
+                      <b-input type="textarea" name="post_body" placeholder="Compose your masterpiece..." rows="17">
                       </b-input>
                   </b-field>
               </div>
@@ -65,7 +65,7 @@
                       </div>
                       <div class="publish-buttons-widget widget-area">
                           <div class="secondary-action-button">
-                              <button class="button is-info is-outlined is-fullwidth">Save Draft</button>
+                              <button class="button is-info is-outlined is-fullwidth" :disabled="true" title="Comming Soon! in future plan">Save Draft</button>
                           </div>
                           <div class="primary-action-button">
                               <button class="button is-primary is-fullwidth">Publish</button>

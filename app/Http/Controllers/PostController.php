@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
+use LaraFlash;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('role:superadministrator|administrator|editor|author|contributor');
+        $this->request = $request;
     }
 
     /**
@@ -30,6 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        LaraFlash::info("Write what is on your mind!");
         return view('manage.posts.create');
     }
 
@@ -41,7 +46,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // alpha_dash doesn't allow spaces.
+        $request->validate([
+          'post_title'  => 'required|max:255',
+          'slug'        => 'required|max:100|alpha_dash',
+          'post_body'   => 'required|min:70'
+        ]);
+
+        $timeNow = new Carbon();
+
+        $post = new Post();
+        $post->title = $request['post_title'];
+        $post->slug = $request['slug'];
+        $post->content = $request['post_body'];
+        $post->author_id = $request->User()->id;
+        $post->excerpt = substr($request['post_body'], 0, 7);
+
+        $post->save();
+
+        LaraFlash::success('Post Created, Successfully!');
+        return view('manage.posts.create');
     }
 
     /**
