@@ -62,7 +62,7 @@ class PostController extends Controller
         $post->slug = $request['slug'];
         $post->content = $request['post_body'];
         $post->author_id = $request->User()->id;
-        $post->excerpt = substr($request['post_body'], 0, 7);
+        $post->excerpt = substr($request['post_body'], 0, 20);
 
         $post->save();
 
