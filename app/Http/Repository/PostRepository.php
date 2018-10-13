@@ -13,7 +13,7 @@ class PostRepository
     protected $posts;
 
     public function getPosts(){
-      $posts = Post::all();
+      $posts = Post::with('user')->get();
 
       return $posts;
     }

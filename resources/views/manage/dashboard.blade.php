@@ -16,7 +16,7 @@
 
   <div class="columns m-t-10">
     <div class="column is-two-thirds">
-      @for ($i=0; $i < 10; $i++)
+      @foreach ($posts as $post)
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
@@ -26,7 +26,7 @@
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+              <strong>{{$post->user->name}}</strong> <small>@johnsmith</small> <small>31m</small>
               <br>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
             </p>
@@ -49,7 +49,7 @@
           <button class="delete"></button>
         </div>
       </article>
-    @endfor
+    @endforeach
     </div>
 
     <div class="column">
