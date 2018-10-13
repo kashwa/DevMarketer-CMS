@@ -4,12 +4,12 @@ namespace App\Http\ViewComposers;
 
 use App\Post;
 use Illuminate\View\View;
+use App\Http\Repository\PostRepository;
 
 class PostComposer
 {
   /**
-     * The Post repository implementation.
-     *
+     * Publish data using Post Repository.
      * @var PostRepository
      */
     protected $posts;
@@ -20,11 +20,10 @@ class PostComposer
      * @param  PostRepository  $posts
      * @return void
      */
-    public function __construct()
+    public function __construct(PostRepository $post_repo)
     {
         // Dependencies automatically resolved by service container...
-        $posts = Post::all();
-        $this->posts = $posts;
+        $this->posts = $post_repo->getPosts();
     }
 
     /**

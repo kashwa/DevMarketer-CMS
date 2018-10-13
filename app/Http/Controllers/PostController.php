@@ -7,6 +7,7 @@ use App\User;
 use LaraFlash;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Repository\PostRepository;
 
 class PostController extends Controller
 {
@@ -22,9 +23,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PostRepository $post_repo)
     {
-        $posts = Post::all();
+        $posts = $post_repo->getPosts();
         return view('manage.posts.index')->withPosts($posts);
     }
 
