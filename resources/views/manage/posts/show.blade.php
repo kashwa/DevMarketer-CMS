@@ -16,6 +16,7 @@
               <div class="content">
                 <p>
                   <strong>{{$post->user->name}}</strong> <small>({{$post->user->email}})</small> <small>{{$post->created_at}}</small> <hr>
+                  <strong>{{$post->title}}</strong> <br><br>
                   {!! $post->content !!}
                 </p>
               </div>
@@ -31,8 +32,26 @@
 
                 @if (Auth::user()->id == $post->author_id)
                   <div class="level-right">
+                    {{-- Edit --}}
                     <a href="{{route('posts.edit', $post->id)}}" class="button is-outlined is-info m-r-10">Edit</a>
-                    <a href="#" class="button is-outlined is-danger">Delete</a>
+                    {{-- Delete --}}
+
+
+                    <a href="{{route('posts.destroy', $post->id)}}" class="button is-outlined is-danger">Delete</a>
+                        {{-- <script type="text/javascript">
+                           $("#DeleteBtn").submit(function (event) {
+                                 var x = confirm("Are you sure you want to delete?");
+                                    if (x) {
+                                        return true;
+                                    }
+                                    else {
+
+                                        event.preventDefault();
+                                        return false;
+                                    }
+                                });
+                        </script> --}}
+
                   </div>
                 @endif
 
