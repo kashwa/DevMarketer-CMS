@@ -26,7 +26,10 @@
         <div class="media-content m-b-20">
           <div class="content">
             <p>
-              <strong>{{$post->user->name}}</strong> <small>({{$post->user->email}})</small> <small>{{$post->created_at}}</small>
+              <strong>{{$post->user->name}}</strong> <small>({{$post->user->email}})</small> 
+              <a href="{{route('posts.show', $post->id)}}">
+                <small>{{$post->created_at}}</small>
+              </a>
               <br>
               {!! $post->content !!}
             </p>
