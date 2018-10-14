@@ -91,7 +91,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::where('id', $id)->get();
+        return view('manage.posts.edit')->withPosts($post);
     }
 
     /**
@@ -103,7 +104,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'post_title'  => 'required|max:255',
+        'post_body'   => 'required|min:70'
+      ]);
+
+      $postEd = Post::findOrFail($id);
+      $postEd->title   = $request['post_title'];
+      $postEd->content = $request['post_body'];
+      $postEd->save();
+
+      LaraFlash::success('Post Updated Successfully');
+      $post = Post::where('id', $id)->get();
+      return view('manage.posts.show')->withPosts($post);
     }
 
     /**

@@ -36,9 +36,9 @@
               <div class="media-content m-b-20">
                 <div class="content">
                   <p>
-                    <strong>{{$post->user->name}}</strong> <small>({{$post->user->email}})</small> 
+                    <strong>{{$post->user->name}}</strong> <small>({{$post->user->email}})</small>
                     <a href="{{route('posts.show', $post->id)}}">
-                      <small>{{$post->created_at}}</small>
+                      <small><strong>{{$post->created_at}}</strong></small>
                     </a>
                     <br>
                     {!! $post->content !!}

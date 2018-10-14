@@ -28,6 +28,14 @@
                     <span class="icon is-small"><i class="fa fa-heart m-l-50"></i></span>
                   </a>
                 </div>
+
+                @if (Auth::user()->id == $post->author_id)
+                  <div class="level-right">
+                    <a href="{{route('posts.edit', $post->id)}}" class="button is-outlined is-info m-r-10">Edit</a>
+                    <a href="#" class="button is-outlined is-danger">Delete</a>
+                  </div>
+                @endif
+
               </nav>
             </div>
           </article>
