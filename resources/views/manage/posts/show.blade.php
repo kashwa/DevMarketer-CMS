@@ -56,11 +56,9 @@
             <div class="notification">
               <label for="slug" class="label">Slug:</label>
               <div class="field">
-                <ul>
-                  <li>
-                    <a href="#">{{$post->slug}}</a>
-                  </li>
-                </ul>
+                <li>
+                  <a href="#">{{$post->slug}}</a>
+                </li>
               </div>
             </div>
           </div>

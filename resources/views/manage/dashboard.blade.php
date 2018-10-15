@@ -55,11 +55,9 @@
           <label for="slug" class="label">Slug:</label>
           <div class="field">
             @foreach ($posts as $post)
-              <ul>
-                <li>
-                  <a href="#">{{$post->slug}}</a>
-                </li>
-              </ul>
+              <li>
+                <a href="#">{{$post->slug}}</a>
+              </li>
             @endforeach
           </div>
         </div>
