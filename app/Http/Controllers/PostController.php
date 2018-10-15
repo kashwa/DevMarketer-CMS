@@ -55,8 +55,6 @@ class PostController extends Controller
           'post_body'   => 'required|min:70'
         ]);
 
-        $timeNow = new Carbon();
-
         $post = new Post();
         $post->title = $request['post_title'];
         $post->slug = $request['slug'];
