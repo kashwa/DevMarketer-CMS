@@ -32,25 +32,16 @@
 
                 @if (Auth::user()->id == $post->author_id)
                   <div class="level-right">
-                    {{-- Edit --}}
-                    <a href="{{route('posts.edit', $post->id)}}" class="button is-outlined is-info m-r-10">Edit</a>
-                    {{-- Delete --}}
+                      {{-- Edit --}}
+                      <a href="{{ route('posts.edit', $post->id) }}" class="button is-outlined is-info m-r-10">Edit</a>
 
-
-                    <a href="{{route('posts.destroy', $post->id)}}" class="button is-outlined is-danger">Delete</a>
-                        {{-- <script type="text/javascript">
-                           $("#DeleteBtn").submit(function (event) {
-                                 var x = confirm("Are you sure you want to delete?");
-                                    if (x) {
-                                        return true;
-                                    }
-                                    else {
-
-                                        event.preventDefault();
-                                        return false;
-                                    }
-                                });
-                        </script> --}}
+                      {{-- Delete --}}
+                      <form id="DeleteBtn" action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="POST">
+                        <input type="submit" value="delete" style="background-color: #f2134b; color: white" 
+                          class="button is-outlined" onclick="return confirm('Are you sure, You want to delete Post?')">
+                            {{ method_field('DELETE') }}
+                            {!! csrf_field() !!}
+                      </form>
 
                   </div>
                 @endif
@@ -65,13 +56,11 @@
             <div class="notification">
               <label for="slug" class="label">Slug:</label>
               <div class="field">
-                @foreach ($posts as $post)
                 <ul>
                   <li>
                     <a href="#">{{$post->slug}}</a>
                   </li>
                 </ul>
-                @endforeach
               </div>
             </div>
           </div>
