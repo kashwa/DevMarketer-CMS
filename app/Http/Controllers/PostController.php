@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use LaraFlash;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Repository\PostRepository;
 
