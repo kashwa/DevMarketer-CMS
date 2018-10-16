@@ -37,7 +37,7 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="#">
+                            <a href="{{route('users.show', Auth::user()->id)}}">
                             <span class="icon"><i class="fa fa-w m-r-10 fa-user-circle"></i></span>
                             Profile</a>
                         </li>
