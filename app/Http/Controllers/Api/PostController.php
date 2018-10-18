@@ -68,25 +68,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = new PostResource(Post::find($id));
+        $post =Post::find($id);
         if($post){
-            return $this->apiResponse($post);
+            return $this->apiResponse( new PostResource($post));
         } else {
             $msg = "Your item might be deleted or not found!";
             return $this->apiResponse(null, $msg, 404);
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $post = Post::where('id', $id)->get();
-        return view('manage.posts.edit')->withPosts($post);
     }
 
     /**
