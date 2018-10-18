@@ -19,3 +19,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/posts/unique', 'PostController@apiCheckUnique')->name('api.posts.unique');
     
 });
+
+// Route::apiResource('/posts', 'PostController');
