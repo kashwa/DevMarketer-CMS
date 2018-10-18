@@ -20,7 +20,12 @@ class PostResource extends Resource
             'author' => $this->author_id,
             'profile'=> /*route('users.show', $this->id),*/ 
                         url('/users/'.$this->id.'/'),
-            'Current-user-name'  => \Auth::user()->name
+            'Current-user-name'  => \Auth::user()->name,
+            'user' => [
+                'key' => $this->user->id,
+                'name'=> $this->user->name,
+                'email'=> $this->user->email
+            ]
 
         ];
     }
