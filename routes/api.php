@@ -18,6 +18,6 @@ Route::middleware('auth:api')->group(function () {
     # link will be :- [devmarketer.com/api/posts/unique/....]
     Route::get('/posts/unique', 'PostController@apiCheckUnique')->name('api.posts.unique');
     
+    # Resource route for the Posts api.
+    Route::apiResource('/posts', 'PostController');
 });
-
-// Route::apiResource('/posts', 'PostController');
