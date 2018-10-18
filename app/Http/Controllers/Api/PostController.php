@@ -6,7 +6,6 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
 
 class PostController extends Controller

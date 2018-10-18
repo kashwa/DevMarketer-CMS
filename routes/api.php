@@ -20,4 +20,7 @@ Route::middleware('auth:api')->group(function () {
     
     # Resource route for the Posts api.
     Route::apiResource('/posts', 'PostController');
+
+    # Resource route for Users api.
+    Route::apiResource('/users', 'UserController');
 });
