@@ -14,6 +14,11 @@ use App\Http\Resources\UserResource;
 class UserController extends Controller
 {
 
+    /**
+     * Use ApiResponse trait to make a Response Standard
+     */
+    use ApiResponse;
+
     public function __construct(Request $request) {
         $this->request = $request;
     }
@@ -26,18 +31,7 @@ class UserController extends Controller
     public function index()
     {
         $users = UserResource::collection(User::all());
-        return response($users);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $roles = Role::all();
-        return view('manage.users.create')->withRoles($roles);
+        return $this->apiResponse($users);
     }
 
     /**
@@ -85,12 +79,6 @@ class UserController extends Controller
 
 
         return redirect()->route('users.show', $user->id);
-
-        // if (!$user->save()) {
-        //   LaraFlash::danger('Sorry, a problem happened while saving that user.');
-        //   return redirect()->route('users.create');
-        // }
-
     }
 
     /**
@@ -101,8 +89,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        return view('manage.users.show')->withUsers($user);
+        $user =User::find($id);
+        if($user){
+            return $this->apiResponse(new UserResource($user));
+        } else {
+            $msg = "Your item might be deleted or not found!";
+            return $this->apiResponse(null, $msg, 404);
+        }
     }
 
     /**
