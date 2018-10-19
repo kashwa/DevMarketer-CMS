@@ -14,4 +14,13 @@ class Post extends Model
     {
       return $this->belongsTo('App\User', 'author_id');
     }
+
+    /**
+     * Here is fillable items, Mass Assignment.
+     *
+     * @var array
+     */
+    protected $fillable = [
+      'title', 'slug', 'author_id', 'excerpt', 'content'
+    ];
 }
