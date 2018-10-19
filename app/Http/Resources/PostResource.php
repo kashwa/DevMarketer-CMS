@@ -17,6 +17,7 @@ class PostResource extends Resource
         return [
             'key' => $this->id,
             'header' => str_limit($this->content, 50),
+            'post_body' => $this->content,
             'author' => $this->author_id,
             'profile'=> /*route('users.show', $this->id),*/ 
                         url('/users/'.$this->id.'/'),

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -41,23 +42,37 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // alpha_dash doesn't allow spaces.
-        $request->validate([
-          'post_title'  => 'required|max:255',
-          'slug'        => 'required|max:100|alpha_dash',
-          'post_body'   => 'required|min:70'
+        $validate = Validator::make($request->all(), [
+            'title'     => 'required|max:255',
+            'slug'      => 'required|max:100|alpha_dash',
+            'content'   => 'required|min:70'
         ]);
 
-        $post = new Post();
-        $post->title = $request['post_title'];
-        $post->slug = $request['slug'];
-        $post->content = $request['post_body'];
-        $post->author_id = $request->User()->id;
-        $pure_data = strip_tags($request['post_body']);
-        $post->excerpt = substr($pure_data, 0, 20);
+        if($validate->fails()){
+            return $this->apiResponse(null, $validate->errors(), 422);
+        }
 
-        $post->save();
-
-        return view('manage.posts.create');
+        $title = $request->title;
+        $slug = $request->slug;
+        $content = $request->content;
+        $author_id = $request->User()->id;
+        $pure_data = strip_tags($request->content);
+        $excerpt = substr($pure_data, 0, 20);
+        
+        $post = Post::create([
+            'title' => $title,
+            'slug' => $slug,
+            'content' => $content,
+            'author_id'=> $author_id,
+            'excerpt' => $excerpt
+        ]);
+        
+        if($post){
+            return $this->apiResponse(new PostResource($post), null, 201);
+        } else {
+            $msg = "Unknown Error!";
+            return $this->apiResponse(null, $msg, 520);
+        }
     }
 
     /**
@@ -70,7 +85,7 @@ class PostController extends Controller
     {
         $post =Post::find($id);
         if($post){
-            return $this->apiResponse( new PostResource($post));
+            return $this->apiResponse(new PostResource($post));
         } else {
             $msg = "Your item might be deleted or not found!";
             return $this->apiResponse(null, $msg, 404);
