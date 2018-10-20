@@ -87,8 +87,7 @@ class PostController extends Controller
         if($post){
             return $this->apiResponse(new PostResource($post));
         } else {
-            $msg = "Your item might be deleted or not found!";
-            return $this->apiResponse(null, $msg, 404);
+            return $this->notFoundResponse();
         }
     }
 
@@ -101,19 +100,44 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $request->validate([
-        'post_title'  => 'required|max:255',
-        'post_body'   => 'required|min:70'
-      ]);
+      // alpha_dash doesn't allow spaces.
+        $validate = Validator::make($request->all(), [
+            'title'     => 'required|max:255',
+            'slug'      => 'required|max:100|alpha_dash',
+            'content'   => 'required|min:70'
+        ]);
 
-      $postEd = Post::findOrFail($id);
-      $postEd->title   = $request['post_title'];
-      $postEd->content = $request['post_body'];
-      $postEd->save();
+        if($validate->fails()){
+            return $this->apiResponse(null, $validate->errors(), 422);
+        }
 
-      LaraFlash::success('Post Updated Successfully');
-      $post = Post::where('id', $id)->get();
-      return view('manage.posts.show')->withPosts($post);
+        $post = Post::find($id);
+
+        if(!$post){
+            return $this->notFoundResponse();
+        }
+
+        $title = $request->title;
+        $slug = $request->slug;
+        $content = $request->content;
+        $author_id = $request->User()->id;
+        $pure_data = strip_tags($request->content);
+        $excerpt = substr($pure_data, 0, 20);
+        
+        $post->update([
+            'title' => $title,
+            'slug' => $slug,
+            'content' => $content,
+            'author_id'=> $author_id,
+            'excerpt' => $excerpt
+        ]);
+        
+        if($post){
+            return $this->apiResponse(new PostResource($post), null, 201);
+        } else {
+            $msg = "Unknown Error!";
+            return $this->apiResponse(null, $msg, 520);
+        }
     }
 
     /**
@@ -127,15 +151,5 @@ class PostController extends Controller
       $post = Post::where('id', $id);
       $post->delete();
       return view('manage.dashboard');
-    }
-
-    /**
-     * Generate api - Checks the uniqueness of
-     * the newly created slug.
-     *
-     * @return void
-     */
-    public function apiCheckUnique(Request $request) {
-        return json_encode(!Post::where('slug', '=', $request->slug)->exists());
     }
 }

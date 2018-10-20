@@ -16,6 +16,8 @@ class PostResource extends Resource
     {
         return [
             'key' => $this->id,
+            'title' => $this->title,
+            'slug' => $this->slug,
             'header' => str_limit($this->content, 50),
             'post_body' => $this->content,
             'author' => $this->author_id,

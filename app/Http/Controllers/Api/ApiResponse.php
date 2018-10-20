@@ -32,4 +32,9 @@ trait ApiResponse{
     return response($array, $status_code);
   }
 
+  public function notFoundResponse(){
+    $msg = "Your item might be deleted or not found!";
+    return $this->apiResponse(null, $msg, 404);
+  }
+
 }
