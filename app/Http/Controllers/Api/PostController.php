@@ -149,7 +149,10 @@ class PostController extends Controller
     public function destroy($id)
     {
       $post = Post::where('id', $id);
-      $post->delete();
-      return view('manage.dashboard');
+      if($post->delete()){
+            return $this->foundDeleteResponse();
+        } else {
+            return $this->notFoundDeleteResponse();
+        }
     }
 }

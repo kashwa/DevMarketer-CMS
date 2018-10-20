@@ -143,6 +143,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $user = User::where('id', $id);
+      if($user->delete()){
+            return $this->foundDeleteResponse();
+        } else {
+            return $this->notFoundDeleteResponse();
+        }
     }
 }

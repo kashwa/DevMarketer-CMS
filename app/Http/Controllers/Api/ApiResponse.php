@@ -37,4 +37,20 @@ trait ApiResponse{
     return $this->apiResponse(null, $msg, 404);
   }
 
+  public function foundDeleteResponse(){
+    return $array = [
+      'Data'    =>  'Your Item is Deleted, Successfully!',
+      'status'  =>  true,
+      'error'   => null
+    ];
+  }
+
+  public function notFoundDeleteResponse(){
+    return $array = [
+      'Data' => null,
+      'status' => false,
+      'error' => 'Item might be deleted or not found'
+    ];
+  }
+
 }
