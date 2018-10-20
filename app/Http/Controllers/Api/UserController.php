@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -42,43 +43,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // alpha_dash doesn't allow spaces.
+        $validate = Validator::make($request->all(), [
             'name'  => 'required|max:255',
+            'password'  => 'required|min:7',
             'email' => 'required|email|unique:users'
         ]);
 
-        if($this->request->has('password') && !empty($request->password)){
-            // entered manually
-            $password = trim($request->password);
-
-        } else {
-            # SET AUTO_GENERATE
-            $length = 10;
-            $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
-            $str = '';
-            $max = mb_strlen($keyspace, '8bit') - 1;
-
-            for ($i=0; $i < $length; ++$i) {
-                $str .= $keyspace[random_int(0, $max)];
-            }
-
-            $password = $str;
+        if($validate->fails()){
+            return $this->apiResponse(null, $validate->errors(), 422);
         }
 
-        // Save the user.
-        $user = new User();
-        $user->name     = $request['name'];
-        $user->email    = $request['email'];
-        $user->password = Hash::make($password);
-
-        $user->save();
-        // LaraFlash::success('Successfully, User created');
-
-        if ($request->roles)
-            $user->syncRoles(explode(',', $request->roles));
-
-
-        return redirect()->route('users.show', $user->id);
+        $name = $request->name;
+        $email = $request->email;
+        $password = Hash::make($request->password);
+        $api_token = bin2hex(openssl_random_pseudo_bytes(30));
+        
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'api_token'=> $api_token
+        ]);
+        
+        if($user){
+            return $this->apiResponse(new UserResource($user), null, 201);
+        } else {
+            $msg = "Unknown Error!";
+            return $this->apiResponse(null, $msg, 520);
+        }
     }
 
     /**
@@ -99,19 +92,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $roles = Role::all();
-        $user = User::where('id', $id)->with('roles')->first();
-        return view('manage.users.edit')->withUsers($user)->withRoles($roles);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -120,38 +100,38 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validate = Validator::make($request->all(), [
             'name'  => 'required|max:255',
-            'email' => 'required|email|unique:users,email,'.$id
+            'password'  => 'required|min:7',
+            'email' => 'required|email'
         ]);
 
-        $user = User::findOrFail($id);
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-
-        if ($request->password_options == 'auto'){
-            # auto generate password
-            $length = 10;
-            $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
-            $str = '';
-            $max = mb_strlen($keyspace, '8bit') - 1;
-
-            for ($i=0; $i < $length; ++$i) {
-                $str .= $keyspace[random_int(0, $max)];
-            }
-            $user->password = Hash::make($str);
-
-        } elseif($request->password_options == 'manual'){
-            $user->password = Hash::make($request->password);
+        if($validate->fails()){
+            return $this->apiResponse(null, $validate->errors(), 422);
         }
 
-        $user->save();
+        $user = User::find($id);
 
-        $user->syncRoles(explode(',', $request->roles));
+        if(!$user){
+            return $this->notFoundResponse();
+        }
 
-        // LaraFlash::success("Successfully User updated.")
-        LaraFlash::success("Successfully User updated.");
-        return redirect()->route('users.show', $id);
+        $name = $request->name;
+        $email = $request->email;
+        $password = Hash::make($request->password);
+        
+        $user->update([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+        ]);
+        
+        if($user){
+            return $this->apiResponse(new UserResource($user), null, 201);
+        } else {
+            $msg = "Unknown Error!";
+            return $this->apiResponse(null, $msg, 520);
+        }
 
     }
 
