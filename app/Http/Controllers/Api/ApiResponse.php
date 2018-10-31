@@ -22,35 +22,39 @@ trait ApiResponse{
    * @param integer $status_code
    * @return void
    */
-  public function apiResponse($data = null, $error = null, $status_code = 200){
-    $array = [
-      'Data'    =>  $data,
-      'status'  =>  $status_code == 200 ? true : false,
-      'error'   =>  $error
-    ];
+  public function apiResponse($data = null, $error = null, $status_code = 200)
+  {
+      $array = [
+        'Data'    =>  $data,
+        'status'  =>  $status_code == 200 ? true : false,
+        'error'   =>  $error
+      ];
 
-    return response($array, $status_code);
+      return response($array, $status_code);
   }
 
-  public function notFoundResponse(){
-    $msg = "Your item might be deleted or not found!";
-    return $this->apiResponse(null, $msg, 404);
+  public function notFoundResponse()
+  {
+      $msg = "Your item might be deleted or not found!";
+      return $this->apiResponse(null, $msg, 404);
   }
 
-  public function foundDeleteResponse(){
-    return $array = [
-      'Data'    =>  'Your Item is Deleted, Successfully!',
-      'status'  =>  true,
-      'error'   => null
-    ];
+  public function foundDeleteResponse()
+  {
+      return $array = [
+        'Data'    =>  'Your Item is Deleted, Successfully!',
+        'status'  =>  true,
+        'error'   => null
+      ];
   }
 
-  public function notFoundDeleteResponse(){
-    return $array = [
-      'Data' => null,
-      'status' => false,
-      'error' => 'Item might be deleted or not found'
-    ];
+  public function notFoundDeleteResponse()
+  {
+      return $array = [
+        'Data' => null,
+        'status' => false,
+        'error' => 'Item might be deleted or not found'
+      ];
   }
 
 }
