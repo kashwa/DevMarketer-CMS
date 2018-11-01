@@ -61,6 +61,7 @@ class PostController extends Controller
         $post->author_id = $request->User()->id;
         $pure_data = strip_tags($request['post_body']);
         $post->excerpt = substr($pure_data, 0, 20);
+        // TODO: insert post COMMENT_COUNT times here throuth AJAX.
 
         $post->save();
 
