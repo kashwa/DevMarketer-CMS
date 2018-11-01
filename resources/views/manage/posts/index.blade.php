@@ -43,6 +43,7 @@
                     {!! $post->content !!}
                   </p>
                 </div>
+                {{--Level, Level_left, Level_item, YOUR SPAN--}}
                 <nav class="level is-mobile">
                   <div class="level-left">
                     <a class="level-item">
