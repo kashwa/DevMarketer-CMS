@@ -22,4 +22,11 @@ $(document).ready(function(){
     });
 });
 
+//! TODO: Fetch AJAX to send more comments counter.
+$(document).ready(function () {
+    $('nav.level>div.level-left>a.level-item').click(function (e) {
+       console.log('Clicked');
+   });
+});
+
 require('./manage')
