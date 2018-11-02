@@ -60,11 +60,18 @@
 
         @endforeach
 
-        <script>
-          // Get the value here as MAX got it in URL variable.
-          // Then pass it to the script and increase it.
-          // make sure that it is saved in DB.
-        </script>
-
     </div> {{-- End of .flex-container --}}
+
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).on('click', '.level', function() {
+              
+                   alert('test');
+                   return false;
+              
+            });
+        });
+    </script>
 @endsection

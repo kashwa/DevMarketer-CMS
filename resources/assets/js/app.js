@@ -22,20 +22,4 @@ $(document).ready(function(){
     });
 });
 
-// TODO: Fetch AJAX to send more comments counter.
-$(document).ready(function () {
-    $('nav.level>div.level-left>a.level-item').click(function (e) {
-       $.ajax({
-            url: '{{ url("posts.create") }}',
-            method: 'POST',
-            data: {
-                comment_count: $('{{comment_count}}').val() +1
-            },
-           success: function (result) {
-               console.log(result);
-           }
-       });
-    });
-});
-
 require('./manage')
