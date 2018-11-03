@@ -47,6 +47,7 @@
                 <nav class="level is-mobile">
                   <div class="level-left">
                     <a class="level-item">
+                      <textarea v-model="comments" @click="commentspls"></textarea>
                       <span class="icon is-small">({{$post->comment_count}})<i class="fa fa-comment m-l-5"></i></span>
                     </a>
                     <a class="level-item">
@@ -65,13 +66,17 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $(document).on('click', '.level', function() {
-              
-                   alert('test');
-                   return false;
-              
-            });
-        });
-    </script>
+<script>
+  var app = new Vue({
+    el : '#app',
+    data: {
+      comments: {{$post['comment_count']}}
+    },
+    methods: {
+      commentspls : function () {
+        return (this.comments) += 1;
+      }
+    }
+  });
+</script>
 @endsection
