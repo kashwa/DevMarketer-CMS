@@ -61,13 +61,23 @@ class PostController extends Controller
         $post->author_id = $request->User()->id;
         $pure_data = strip_tags($request['post_body']);
         $post->excerpt = substr($pure_data, 0, 20);
-        // TODO: insert post COMMENT_COUNT times here throuth AJAX.
-        $post->comment_count = $request['comment_count'];
-
+        
         $post->save();
 
         LaraFlash::success('Post Created, Successfully!');
         return view('manage.posts.create');
+    }
+
+    /**
+     * commentCounter function to increase counter commits as pressed.
+     * 
+     * @return void
+     */
+    public function commentCounter(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->comment_count = $request['comment_count'];
+        $post->save();
     }
 
     /**
