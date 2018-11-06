@@ -47,8 +47,11 @@
                 <nav class="level is-mobile">
                   <div class="level-left">
                     <a class="level-item">
-                    <comment-count url="{{url('manage.posts')}}"
-                    @click="commentspls" :comments="comments"></comment-count>
+
+                    {{-- <comment-count url="{{url('manage.posts')}}"
+                    @click="commentspls" :comments="comments"></comment-count> --}}
+                    <span class="icon is-small" @click="commentspls" :text="comments">({{$post->comment_count}})<i class="fa fa-comment m-l-5"></i></span>
+
                     <input type="hidden" v-model="comments" name="comment_count">
                     </a>
                     <a class="level-item">
@@ -71,11 +74,35 @@
   var app = new Vue({
     el : '#app',
     data: {
-      comments: {{$post['comment_count']}}
+      comments: {{$post['comment_count']}},
+      url: '/api/posts/{{$post->id}}',
+      id: {{$post->id}},
+      api_token: '{{Auth::user()->api_token}}',
+      csrfToken: '{{ csrf_field() }}'
     },
     methods: {
       commentspls : function () {
-        // this.$parent.comments = (this.$root.comments) += 1;
+        this.comments = (this.$root.comments) += 1;
+  // Run ajax to increase it --enter url manually || add id to it as input.
+        if(this.comments != 0){
+         this.updateCounter();
+        }
+      },
+      updateCounter: function () {
+        let vm = this;
+        axios.put(vm.url, {
+          data: {
+            id: vm.id,
+            comment_count: vm.comments,
+            api_token: vm.api_token
+          }
+        }).then(function(response) {
+          if(response.data){
+            console.log(response);
+          }
+        }).catch(function(error){
+          console.log(error);
+        });
       }
     }
   });

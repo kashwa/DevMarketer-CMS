@@ -24,3 +24,6 @@ Route::middleware('auth:api')->group(function () {
     # Resource route for Users api.
     Route::apiResource('/users', 'UserController');
 });
+
+    # Counter increase route API.
+Route::put('posts/{id}', 'PostController@commentCounter')->name('manage.post');
