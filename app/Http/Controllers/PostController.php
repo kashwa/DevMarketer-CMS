@@ -77,7 +77,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->comment_count = $request['comment_count'];
-        $post->save();
+        $post->author_id = $request['author_id'];
+        return $post->save();
     }
 
     /**
