@@ -18,12 +18,12 @@ Route::middleware('auth:api')->group(function () {
     # link will be :- [devmarketer.com/api/posts/unique/....]
     Route::get('/posts/unique', 'PostController@apiCheckUnique')->name('api.posts.unique');
     
+    # Counter increase route API.
+    Route::put('posts/{id}', 'PostController@commentCounter')->name('manage.post');
+
     # Resource route for the Posts api.
     Route::apiResource('/posts', 'PostController');
 
     # Resource route for Users api.
     Route::apiResource('/users', 'UserController');
 });
-
-    # Counter increase route API.
-Route::put('posts/{id}', 'PostController@commentCounter')->name('manage.post');
