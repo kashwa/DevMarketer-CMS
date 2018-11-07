@@ -12038,7 +12038,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(53);
 
 
 /***/ }),
@@ -12073,7 +12073,7 @@ $(document).ready(function () {
     });
 });
 
-__webpack_require__(50);
+__webpack_require__(52);
 
 /***/ }),
 /* 13 */
@@ -54171,9 +54171,9 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(10)
 /* script */
-var __vue_script__ = __webpack_require__(61)
+var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(62)
+var __vue_template__ = __webpack_require__(51)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54213,6 +54213,65 @@ module.exports = Component.exports
 
 /***/ }),
 /* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    icon: {
+      type: String,
+      default: 'fa fa-comment m-l-5'
+    },
+    url: {
+      required: true,
+      type: String
+    },
+    comments: {
+      required: true,
+      type: Number
+    }
+  },
+  methods: {
+    commentspls: function commentspls() {
+      // this.$parent.comments = (this.$root.comments) += 1;
+      // this.comments = this.$parent.comments;
+    }
+  }
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", { staticClass: "icon is-small" }, [
+    _vm._v(_vm._s(_vm.comments) + "\n  "),
+    _c("i", { class: _vm.icon })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c0ce28f2", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
 /***/ (function(module, exports) {
 
 var accordions = document.getElementsByClassName('has-submenu');
@@ -54257,78 +54316,10 @@ for (var i = 0; i < accordions.length; i++) {
 }
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    icon: {
-      type: String,
-      default: 'fa fa-comment m-l-5'
-    },
-    url: {
-      required: true,
-      type: String
-    },
-    comments: {
-      required: true,
-      type: Number
-    }
-  },
-  methods: {
-    commentspls: function commentspls() {
-      // this.$parent.comments = (this.$root.comments) += 1;
-      // this.comments = this.$parent.comments;
-    }
-  }
-});
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("span", { staticClass: "icon is-small" }, [
-    _vm._v(_vm._s(_vm.comments) + "\n  "),
-    _c("i", { class: _vm.icon })
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c0ce28f2", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

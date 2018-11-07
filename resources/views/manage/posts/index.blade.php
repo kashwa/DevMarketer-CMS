@@ -75,8 +75,8 @@
     el : '#app',
     data: {
       comments: {{$post['comment_count']}},
-      url: '/api/posts/{{$post->id}}',
-      id: {{$post->id}},
+      url: '/api/posts/{{$post->id}}?api_token={{Auth::user()->api_token}}',
+      id: {{$post['id']}},
       author_id: {{$post->user->id}},
       api_token: '{{Auth::user()->api_token}}',
       csrfToken: '{{ csrf_field() }}'
@@ -95,7 +95,7 @@
           method: 'PUT',
           url: vm.url,
           headers: {
-            api_token: vm.api_token,
+            api_token: vm.api_token
           },
           data: {
             comment_count: vm.comments,
