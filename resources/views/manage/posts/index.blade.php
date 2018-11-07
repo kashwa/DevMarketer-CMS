@@ -77,6 +77,7 @@
       comments: {{$post['comment_count']}},
       url: '/api/posts/{{$post->id}}',
       id: {{$post->id}},
+      author_id: {{$post->user->id}},
       api_token: '{{Auth::user()->api_token}}',
       csrfToken: '{{ csrf_field() }}'
     },
@@ -90,11 +91,16 @@
       },
       updateCounter: function () {
         let vm = this;
-        axios.put(vm.url, {
+        axios({
+          method: 'PUT',
+          url: vm.url,
+          headers: {
+            api_token: vm.api_token,
+          },
           data: {
-            id: vm.id,
             comment_count: vm.comments,
-            api_token: vm.api_token
+            author_id: vm.author_id,
+            id: vm.id,
           }
         }).then(function(response) {
           if(response.data){
