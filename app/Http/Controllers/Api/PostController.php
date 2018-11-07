@@ -155,4 +155,28 @@ class PostController extends Controller
             return $this->notFoundDeleteResponse();
         }
     }
+
+    /**
+     * Generate api - Checks the uniqueness of
+     * the newly created slug.
+     *
+     * @return void
+     */
+    public function apiCheckUnique(Request $request)
+    {
+        return json_encode(!Post::where('slug', '=', $request->slug)->exists());
+    }
+
+    /**
+     * commentCounter function to increase counter commits as pressed.
+     * 
+     * @return void
+     */
+    public function commentCounter(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->comment_count = $request['comment_count'];
+        $post->author_id = $request['author_id'];
+        $post->save();
+    }
 }

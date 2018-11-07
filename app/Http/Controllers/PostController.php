@@ -67,20 +67,7 @@ class PostController extends Controller
         LaraFlash::success('Post Created, Successfully!');
         return view('manage.posts.create');
     }
-
-    /**
-     * commentCounter function to increase counter commits as pressed.
-     * 
-     * @return void
-     */
-    public function commentCounter(Request $request, $id)
-    {
-        $post = Post::findOrFail($id);
-        $post->comment_count = $request['comment_count'];
-        $post->author_id = $request['author_id'];
-        return $post->save();
-    }
-
+    
     /**
      * Display the specified resource.
      *
