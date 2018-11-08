@@ -47,10 +47,10 @@
                 <nav class="level is-mobile">
                   <div class="level-left">
                     <a class="level-item">
-                    <span class="icon is-small">({{$post->comment_count}})<i class="fa fa-comment m-l-5"></i></span>
+                    <span class="icon is-small">({{$post->comment_count}})<i class="fa fa-heart m-l-5"></i></span>
                     </a>
                     <a class="level-item">
-                      <span class="icon is-small"><i class="fa fa-heart m-l-50"></i></span>
+                      <span class="icon is-small"><i class="fa fa-comment m-l-50"></i></span>
                     </a>
                   </div>
                 </nav>
