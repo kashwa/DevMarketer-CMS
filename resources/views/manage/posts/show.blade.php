@@ -23,7 +23,8 @@
               <nav class="level is-mobile">
                 <div class="level-left">
                   <a class="level-item">
-                    <span class="icon is-small">({{$post->comment_count}})<i class="fa fa-comment m-l-5"></i></span>
+                    <span class="icon is-small" @click="commentspls" :text="comments">(@{{comments}})<i class="fa fa-comment m-l-5"></i></span>
+                    <input type="hidden" v-model="comments" name="comment_count">
                   </a>
                   <a class="level-item">
                     <span class="icon is-small"><i class="fa fa-heart m-l-50"></i></span>
@@ -66,4 +67,51 @@
       </div>
     </div>
   @endforeach
+
+@endsection
+
+@section('scripts')
+<script>
+  var app = new Vue({
+    el : '#app',
+    data: {
+      comments: {{$post['comment_count']}},
+      url: '/api/posts/{{$post->id}}?api_token={{Auth::user()->api_token}}',
+      id: {{$post['id']}},
+      author_id: {{$post->user->id}},
+      api_token: '{{Auth::user()->api_token}}',
+      csrfToken: '{{ csrf_field() }}'
+    },
+    methods: {
+      commentspls : function () {
+        this.comments = (this.$root.comments) += 1;
+        // Run ajax to increase it
+        if(this.comments != 0){
+         this.updateCounter();
+        }
+        return this.comments;
+      },
+      updateCounter: function () {
+        let vm = this;
+        axios({
+          method: 'PUT',
+          url: vm.url,
+          headers: {
+            api_token: vm.api_token
+          },
+          data: {
+            comment_count: vm.comments,
+            author_id: vm.author_id,
+            id: vm.id,
+          }
+        }).then(function(response) {
+          console.log(vm.comments)
+        }).catch(function(error){
+          console.log(error);
+        });
+      }
+    }
+  });
+
+</script>
 @endsection
